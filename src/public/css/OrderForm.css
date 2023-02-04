@@ -1,0 +1,31 @@
+table {
+    width: 100%;
+}
+
+tbody {
+    counter-reset: row;
+}
+
+tbody tr::before {
+    counter-increment: row;
+    content: counter(row);
+
+    position: relative;
+    left: 1vw;
+}
+
+table #Col_Ordinal_Number {
+    width: 5%;
+}
+
+table #Col_Refreshment {
+    width: 50%;
+}
+
+table #Col_Unit_Price {
+    width: 25%;
+}
+
+table #Col_Quantity {
+    width: 20%;
+}

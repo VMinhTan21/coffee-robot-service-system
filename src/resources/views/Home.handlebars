@@ -1,0 +1,198 @@
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
+    crossorigin="anonymous"></script>
+
+<script src="https://kit.fontawesome.com/782f335177.js" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+
+<link rel="stylesheet" href="/css/Home.css">
+<script src="/socket.io/socket.io.js"></script>
+<script src="/app/js/Home.js"></script>
+
+<title></title>
+
+{{> header}}
+
+<body>
+    <div class="container-fluid row" style="padding: 0; margin: 0; height: 90%">
+        <div class="col col-md-4" id="home_body_connection_col">
+            <div class="navbar navbar-expand" id="connectionCol">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <label class="nav-link">Thông tin kết nối</label>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="col col-md-8" id="home_body_order_info_col" style="height: 100%;">
+            <div class="navbar navbar-expand" id="navbarNav" style="padding-bottom: 0;">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <label class="nav-link passive" id="nav-tab-completed-orders">Đơn đã thực hiện</label>
+                    </li>
+                    <li class="nav-item">
+                        <label class="nav-link passive" id="nav-tab-list-orders">Danh sách đơn hàng</label>
+                    </li>
+                    <li class="nav-item">
+                        <label class="nav-link active" id="nav-tab-present-order">Đơn hiện tại</label>
+                    </li>
+                </ul>
+            </div>
+            <div id="present-order-body">
+                <table class="table">
+                    <thead></thead>
+                    <tbody>
+                        <tr id="{{ Current_order._id }}">
+                            <td class="td_button_control">
+                                <button type="button" class="btn btn-info" id="btn-delivery">
+                                    <i class="fa fa-arrow-right"></i>
+                                    Thực hiện
+                                </button>
+                                <button type="button" class="btn btn-primary btn-danger" id="btn-cancel">
+                                    <i class="fa-solid fa-trash"></i>
+                                    Hủy
+                                </button>
+                            </td>
+                            <td class="td_card">
+                                <div class="card text-white bg-info mb-3" id="present-order-card">
+                                    <div class="card-header" name="{{ Current_order._id }}" id="OrderID">Đơn số: {{ Current_order._id }} </div>
+                                    <div class="card-body">
+                                        <p class="card-text" name="{{ Current_order.Date }}" id="OrderDate">{{ Current_order.Date }}</p>
+                                        <table class="table">
+                                            <thead>
+                                                <tr>
+                                                    <th scope="col" style="width: fit-content;">Thức uống</th>
+                                                    <th scope="col" style="width: fit-content;">Đơn giá</th>
+                                                    <th scope="col" style="width: fit-content;">Số lượng</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                {{#each Current_order.OrderList}}
+                                                <tr>
+                                                    {{#each this}}
+                                                    <td class="CurrentList" name="{{ this }}">{{this}}</td>
+                                                    {{/each}}
+                                                </tr>
+                                                {{/each}}
+                                            </tbody>
+                                        </table>
+                                        <label for="" class="card-label" name="{{ Current_order.Total }}" id="Total">Tổng: {{ Current_order.Total }}</label>
+                                        <p class="card-text" name="{{ Current_order.Note }}" id="Note">Ghi chú: {{ Current_order.Note }}</p>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div id="list-orders-body" hidden="true">
+                <table class="table">
+                    <thead></thead>
+                    <tbody>
+                        {{#each Orders_list}}
+                        <tr id="{{ this._id }}">
+                            <td class="td_button_control">
+                                <button type="button" class="btn btn-info btn-act-delivery">
+                                    <i class="fa fa-arrow-right"></i>
+                                    <a href="/act/{{this._id}}/delivery">Thực hiện</a>
+                                </button>
+                                <button type="button" class="btn btn-primary btn-custom-high-priority btn-act-priority">
+                                    <i class="fa fa-arrow-up"></i>
+                                    <a href="/act/{{this._id}}/set-priority">Ưu tiên</a>
+                                </button>
+                                <button type="button" class="btn btn-primary btn-danger btn-act-cancel">
+                                    <i class="fa-solid fa-trash"></i>
+                                    <a href="/act/{{this._id}}/cancel">Hủy</a>
+                                </button>
+                            </td>
+                            <td class="td_card">
+                                <div class="card text-white bg-info mb-3" id="present-order-card">
+                                    <div class="card-header">Đơn số {{ this._id }}</div>
+                                    <div class="card-body">
+                                        <p class="card-text" name="{{ this.Date }}" id="OrderDate">{{ this.Date }}</p>
+
+                                        <table class="table">
+                                            <thead>
+                                                <tr>
+                                                    <th scope="col" style="width: fit-content;">Thức uống</th>
+                                                    <th scope="col" style="width: fit-content;">Đơn giá</th>
+                                                    <th scope="col" style="width: fit-content;">Số lượng</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                {{#each this.OrderList}}
+                                                <tr>
+                                                    {{#each this}}
+                                                    <td name="{{ this }}" class="OrderList">{{this}}</td>
+                                                    {{/each}}
+                                                </tr>
+                                                {{/each}}
+                                            </tbody>
+                                        </table>
+                                        <label for="" class="card-label" name="{{ this.Total }}" id="Total">Tổng: {{ this.Total }}</label>
+                                        <p class="card-text" id="Note" name="{{ this.Note }}">Ghi chú: {{ this.Note }}</p>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        {{/each}}
+                    </tbody>
+                </table>
+            </div>
+            <div id="list-completed-orders-body" hidden="true">
+                <table class="table">
+                    <thead></thead>
+                    <tbody>
+                        {{#each Completed_orders}}
+                        <tr id="{{ this._id }}">
+                            <td class="td_button_control">
+                                <button type="button" class="btn btn-info">
+                                    {{!-- <i class="fa fa-check"></i> --}}
+                                    {{ this.Status }}
+                                </button>
+                                <button type="button" class="btn btn-primary btn-danger">
+                                    <i class="fa-solid fa-trash"></i>
+                                    Xóa
+                                </button>
+                            </td>
+                            <td class="td_card">
+                                <div class="card text-white bg-info mb-3" id="present-order-card">
+                                    <div class="card-header">Đơn số {{ this._id }}</div>
+                                    <div class="card-body">
+                                        <p class="card-text" name="{{ this.Date }}" id="OrderDate">{{ this.Date }}</p>
+
+                                        <table class="table">
+                                            <thead>
+                                                <tr>
+                                                    <th scope="col" style="width: fit-content;">Thức uống</th>
+                                                    <th scope="col" style="width: fit-content;">Đơn giá</th>
+                                                    <th scope="col" style="width: fit-content;">Số lượng</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                {{#each this.OrderList}}
+                                                <tr>
+                                                    {{#each this}}
+                                                    <td name="{{ this }}" class="OrderList">{{this}}</td>
+                                                    {{/each}}
+                                                </tr>
+                                                {{/each}}
+                                            </tbody>
+                                        </table>
+                                        <label for="" class="card-label" name="{{ this.Total }}" id="Total">Tổng: {{ this.Total }}</label>
+                                        <p class="card-text" id="Note" name="{{ this.Note }}">Ghi chú: {{ this.Note }}</p>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        {{/each}}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</body>

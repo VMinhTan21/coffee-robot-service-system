@@ -1,0 +1,104 @@
+
+/**
+    *
+    *
+*/
+
+html, body {
+    height: 100%;
+    width: 100%;
+}
+
+* {
+    padding: 0;
+    margin: 0;
+}
+
+.container-fluid {
+    margin: 0;
+    padding: 0;
+}
+
+.navbar .navbar-expand {
+    padding: 0;
+}
+
+
+#connectionCol label {
+    color: black;
+}
+
+#navbarNav .navbar-nav .nav-item .nav-link:hover {
+    cursor: pointer;
+}
+
+#navbarNav .navbar-nav .nav-item .nav-link.active {
+    background-color: #198754;
+    color: white;
+}
+
+#navbarNav .navbar-nav .nav-item .nav-link.passive {
+    background-color: white;
+    color: black;
+}
+
+#list-completed-orders-body,
+#list-orders-body,
+#present-order-body {
+    width: 100%;
+    height: 90%;
+
+    background-color: #198754;
+
+    /* overflow-y: scroll; */
+}
+
+#list-completed-orders-body,
+#list-orders-body {
+    overflow-y: scroll;
+}
+
+.card {
+    width: 90%;
+    left: 5%;
+}
+
+.card .card-header,
+.card .card-body {
+    color: black;
+}
+
+#list-completed-orders-body table,
+#list-orders-body table,
+#present-order-body table {
+    position: relative;
+    top: 5%;
+    left: 5%;
+
+    width: 90%;
+}
+
+table .td_button_control {
+    width: 20%;
+}
+
+table .td_card {
+    width: 80%;
+}
+
+#list-completed-orders-body table button,
+#present-order-body table button {
+    width: 100%;
+    margin-bottom: 2vh;
+}
+
+#list-orders-body table button {
+    width: 100%;
+    margin-bottom: 1vh;
+
+    /* text-align: left; */
+}
+
+#list-orders-body .btn-custom-high-priority {
+    background-color: #000066;
+}
