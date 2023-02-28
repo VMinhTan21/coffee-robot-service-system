@@ -38,12 +38,6 @@ class HomeController {
     }
 
     Update(req, res, next) {
-        // LIST ACTION - act
-        /*
-            List-orders-Delivery
-            List-orders-Set-priority
-            List-orders-Cancel
-        */
 
         console.log(req.params)
 
