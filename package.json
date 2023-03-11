@@ -1,0 +1,26 @@
+{
+  "name": "coffee_service_robot_develop",
+  "version": "1.0.0",
+  "description": "",
+  "main": "src/app.js",
+  "scripts": {
+    "start": "nodemon --inspect src/app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "TanVM",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2",
+    "express-handlebars": "^6.0.6",
+    "mongodb": "^4.13.0",
+    "roslib": "^1.3.0",
+    "socket.io": "^4.5.4"
+  },
+  "devDependencies": {
+    "bootstrap": "^5.2.3",
+    "i": "^0.3.7",
+    "mongoose": "^6.8.3",
+    "morgan": "^1.10.0",
+    "nodemon": "^2.0.20"
+  }
+}
