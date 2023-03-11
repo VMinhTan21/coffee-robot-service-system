@@ -32,7 +32,7 @@ class HomeController {
                 title: 'RbCo - Homepage',
                 Orders_list: Orders_list,
                 Current_order: Current_order,
-                Completed_orders: Completed_orders
+                Completed_orders: Completed_orders,
             })
         })
     }

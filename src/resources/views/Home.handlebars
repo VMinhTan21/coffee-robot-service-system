@@ -9,6 +9,12 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 
+<!-- ROS -->
+<script type="text/javascript"
+    src="http://static.robotwebtools.org/EventEmitter2/current/eventemitter2.min.js"></script>
+<script type="text/javascript" src="http://static.robotwebtools.org/roslibjs/current/roslib.min.js"></script>
+<!-- ROS -->
+
 <link rel="stylesheet" href="/css/Home.css">
 <script src="/socket.io/socket.io.js"></script>
 <script src="/app/js/Home.js"></script>
@@ -26,6 +32,53 @@
                         <label class="nav-link">Thông tin kết nối</label>
                     </li>
                 </ul>
+            </div>
+            <div class="navbar navbar-expand">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <label class="nav-link" id="connection_status">Tình trạng</label>
+                    </li>
+                </ul>
+            </div>
+            <div>
+                <div class="navbar navbar-expand">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <label class="nav-link">Điều khiển</label>
+                        </li>
+                    </ul>
+                </div>
+                <!-- -->
+                <div style="text-align: center; margin-bottom: 1vh">
+                    <button type="button" class="btn btn-primary" id="btn-forward">
+                        <i class="fa-sharp fa-solid fa-circle-arrow-up"></i>
+                    </button>
+                </div>
+                <div style="text-align: center; margin-bottom: 1vh">
+                    <button type="button" class="btn btn-primary" id="btn-left">
+                        <i class="fa-sharp fa-solid fa-circle-arrow-left"></i>
+                    </button>
+                    <button type="button" class="btn btn-primary" id="btn-stop">
+                        <i class="fa-solid fa-stop"></i>
+                    </button>
+                    <button type="button" class="btn btn-primary" id="btn-right">
+                        <i class="fa-sharp fa-solid fa-circle-arrow-right"></i>
+                    </button>
+                </div>
+                <div style="text-align: center; margin-bottom: 1vh">
+                    <button type="button" class="btn btn-primary" id="btn-back">
+                        <i class="fa-sharp fa-solid fa-circle-arrow-down"></i>
+                    </button>
+                </div>
+                <!-- -->
+            </div>
+            <div>
+                <button type="button" class="btn btn-danger">
+                    Ngắt kết nối
+                </button>
+                <button type="button" class="btn btn-success">
+                    Kết nối lại
+                </button>
             </div>
         </div>
         <div class="col col-md-8" id="home_body_order_info_col" style="height: 100%;">
@@ -59,9 +112,11 @@
                             </td>
                             <td class="td_card">
                                 <div class="card text-white bg-info mb-3" id="present-order-card">
-                                    <div class="card-header" name="{{ Current_order._id }}" id="OrderID">Đơn số: {{ Current_order._id }} </div>
+                                    <div class="card-header" name="{{ Current_order._id }}" id="OrderID">Đơn số: {{
+                                        Current_order._id }} </div>
                                     <div class="card-body">
-                                        <p class="card-text" name="{{ Current_order.Date }}" id="OrderDate">{{ Current_order.Date }}</p>
+                                        <p class="card-text" name="{{ Current_order.Date }}" id="OrderDate">{{
+                                            Current_order.Date }}</p>
                                         <table class="table">
                                             <thead>
                                                 <tr>
@@ -80,8 +135,10 @@
                                                 {{/each}}
                                             </tbody>
                                         </table>
-                                        <label for="" class="card-label" name="{{ Current_order.Total }}" id="Total">Tổng: {{ Current_order.Total }}</label>
-                                        <p class="card-text" name="{{ Current_order.Note }}" id="Note">Ghi chú: {{ Current_order.Note }}</p>
+                                        <label for="" class="card-label" name="{{ Current_order.Total }}"
+                                            id="Total">Tổng: {{ Current_order.Total }}</label>
+                                        <p class="card-text" name="{{ Current_order.Note }}" id="Note">Ghi chú: {{
+                                            Current_order.Note }}</p>
                                     </div>
                                 </div>
                             </td>
@@ -98,15 +155,15 @@
                             <td class="td_button_control">
                                 <button type="button" class="btn btn-info btn-act-delivery">
                                     <i class="fa fa-arrow-right"></i>
-                                    <a href="/act/{{this._id}}/delivery">Thực hiện</a>
+                                    <a href="/act/{{this._id}}/delivery" style="text-decoration: none; color: black">Thực hiện</a>
                                 </button>
                                 <button type="button" class="btn btn-primary btn-custom-high-priority btn-act-priority">
                                     <i class="fa fa-arrow-up"></i>
-                                    <a href="/act/{{this._id}}/set-priority">Ưu tiên</a>
+                                    <a href="/act/{{this._id}}/set-priority" style="text-decoration: none; color: white">Ưu tiên</a>
                                 </button>
                                 <button type="button" class="btn btn-primary btn-danger btn-act-cancel">
                                     <i class="fa-solid fa-trash"></i>
-                                    <a href="/act/{{this._id}}/cancel">Hủy</a>
+                                    <a href="/act/{{this._id}}/cancel" style="text-decoration: none; color: white">Hủy</a>
                                 </button>
                             </td>
                             <td class="td_card">
@@ -133,8 +190,10 @@
                                                 {{/each}}
                                             </tbody>
                                         </table>
-                                        <label for="" class="card-label" name="{{ this.Total }}" id="Total">Tổng: {{ this.Total }}</label>
-                                        <p class="card-text" id="Note" name="{{ this.Note }}">Ghi chú: {{ this.Note }}</p>
+                                        <label for="" class="card-label" name="{{ this.Total }}" id="Total">Tổng: {{
+                                            this.Total }}</label>
+                                        <p class="card-text" id="Note" name="{{ this.Note }}">Ghi chú: {{ this.Note }}
+                                        </p>
                                     </div>
                                 </div>
                             </td>
@@ -183,8 +242,10 @@
                                                 {{/each}}
                                             </tbody>
                                         </table>
-                                        <label for="" class="card-label" name="{{ this.Total }}" id="Total">Tổng: {{ this.Total }}</label>
-                                        <p class="card-text" id="Note" name="{{ this.Note }}">Ghi chú: {{ this.Note }}</p>
+                                        <label for="" class="card-label" name="{{ this.Total }}" id="Total">Tổng: {{
+                                            this.Total }}</label>
+                                        <p class="card-text" id="Note" name="{{ this.Note }}">Ghi chú: {{ this.Note }}
+                                        </p>
                                     </div>
                                 </div>
                             </td>

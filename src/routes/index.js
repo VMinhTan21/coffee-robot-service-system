@@ -1,6 +1,5 @@
 const HomeRouter = require('./Home')
 const OrderFormRouter = require('./OrderForm')
-/*-- --*/
 
 
 function route(app, port, SocketServer, SocketIO) {
