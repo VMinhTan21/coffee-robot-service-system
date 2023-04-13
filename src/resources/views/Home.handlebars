@@ -10,9 +10,10 @@
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 
 <!-- ROS -->
-<script type="text/javascript"
-    src="http://static.robotwebtools.org/EventEmitter2/current/eventemitter2.min.js"></script>
-<script type="text/javascript" src="http://static.robotwebtools.org/roslibjs/current/roslib.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/easeljs@1/lib/easeljs.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/eventemitter2@6/lib/eventemitter2.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/roslib@1/build/roslib.min.js"></script>
+<script src="/app/js/ros2d.js"></script>
 <!-- ROS -->
 
 <link rel="stylesheet" href="/css/Home.css">
@@ -24,6 +25,10 @@
 {{> header}}
 
 <body>
+    <div hidden="false">
+        
+    </div>
+    <div id="map"></div>
     <div class="container-fluid row" style="padding: 0; margin: 0; height: 90%">
         <div class="col col-md-4" id="home_body_connection_col">
             <div class="navbar navbar-expand" id="connectionCol">
@@ -155,15 +160,18 @@
                             <td class="td_button_control">
                                 <button type="button" class="btn btn-info btn-act-delivery">
                                     <i class="fa fa-arrow-right"></i>
-                                    <a href="/act/{{this._id}}/delivery" style="text-decoration: none; color: black">Thực hiện</a>
+                                    <a href="/act/{{this._id}}/delivery"
+                                        style="text-decoration: none; color: black">Thực hiện</a>
                                 </button>
                                 <button type="button" class="btn btn-primary btn-custom-high-priority btn-act-priority">
                                     <i class="fa fa-arrow-up"></i>
-                                    <a href="/act/{{this._id}}/set-priority" style="text-decoration: none; color: white">Ưu tiên</a>
+                                    <a href="/act/{{this._id}}/set-priority"
+                                        style="text-decoration: none; color: white">Ưu tiên</a>
                                 </button>
                                 <button type="button" class="btn btn-primary btn-danger btn-act-cancel">
                                     <i class="fa-solid fa-trash"></i>
-                                    <a href="/act/{{this._id}}/cancel" style="text-decoration: none; color: white">Hủy</a>
+                                    <a href="/act/{{this._id}}/cancel"
+                                        style="text-decoration: none; color: white">Hủy</a>
                                 </button>
                             </td>
                             <td class="td_card">

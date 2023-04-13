@@ -123,6 +123,26 @@ $(document).ready(function () {
     })
 
   })
+
+  // MAP -  BEGIN
+  var viewer = new ROS2D.Viewer({
+      divID : 'map',
+      width : 1200,
+      height : 1000
+    });
+
+    var gridClient = new ROS2D.OccupancyGridClient({
+      ros : ros,
+      rootObject : viewer.scene,
+      loadMapFromFile : true,
+      mapUrl : 'maps/map.yaml'
+    });
+    // Scale the canvas to fit to the map
+    gridClient.on('change', function(){
+      viewer.scaleToDimensions(gridClient.currentGrid.width, gridClient.currentGrid.height);
+    });
+  // MAP - END
+
   // ROS
 
   socket.on("Noti_new_order_to_staff", function (data) {
