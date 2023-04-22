@@ -102,3 +102,21 @@ table .td_card {
 #list-orders-body .btn-custom-high-priority {
     background-color: #000066;
 }
+
+/*MAP - Modal - Begin*/
+.modal-content  .modal-body #map {
+    position: relative;
+}
+
+#map {
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%); 
+}
+
+#map canvas {
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+}
+/*MAP - Modal - End*/

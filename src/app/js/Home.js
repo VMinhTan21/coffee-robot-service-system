@@ -100,35 +100,40 @@ $(document).ready(function () {
     console.log('right')
     var right = new ROSLIB.Message({
       linear : {
-        x: 0.0,
+        x: 0.2,
         y: 0.0,
         z: 0.0
       },
       angular : {
-
+        x: 0.0,
+        y: 0.0,
+        z: - 1
       }
     })
+    cmdVel.publish(right)
   })
   $('#btn-left').on('click', function () {
     console.log('left')
     var left = new ROSLIB.Message({
       linear : {
-        x: 0.0,
+        x: 0.2,
         y: 0.0,
         z: 0.0
       },
       angular : {
-
+        x: 0.0,
+        y: 0.0,
+        z: 1
       }
     })
-
+    cmdVel.publish(left)
   })
 
   // MAP -  BEGIN
   var viewer = new ROS2D.Viewer({
       divID : 'map',
-      width : 1200,
-      height : 1000
+      width : 600,
+      height : 500
     });
 
     var gridClient = new ROS2D.OccupancyGridClient({
@@ -139,8 +144,11 @@ $(document).ready(function () {
     });
     // Scale the canvas to fit to the map
     gridClient.on('change', function(){
+      
       viewer.scaleToDimensions(gridClient.currentGrid.width, gridClient.currentGrid.height);
+      viewer.shift(gridClient.currentGrid.pose.position.x, gridClient.currentGrid.pose.position.y);
     });
+
   // MAP - END
 
   // ROS
@@ -233,6 +241,19 @@ $(document).ready(function () {
 
     console.log('temp swap')
     console.log(temp_swap)
+  })
+
+  $('#home_body_connection_col').delegate('#btn_showMap', 'click', function() {
+    if($('#home_body_map_col').attr("hidden") != null) {
+      console.log("have hidden")
+      $('#home_body_map_col').removeAttr("hidden")
+      $('#home_body_order_info_col').attr("hidden", "true")
+    }
+    else {
+      console.log("no attr hidden")
+      $('#home_body_map_col').attr("hidden", "true")
+      $('#home_body_order_info_col').removeAttr("hidden")
+    }
   })
 
   $('#list-orders-body').delegate('.btn-act-priority', 'click', function () {

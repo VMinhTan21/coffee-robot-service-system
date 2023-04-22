@@ -24,11 +24,7 @@
 
 {{> header}}
 
-<body>
-    <div hidden="false">
-        
-    </div>
-    <div id="map"></div>
+<body>    
     <div class="container-fluid row" style="padding: 0; margin: 0; height: 90%">
         <div class="col col-md-4" id="home_body_connection_col">
             <div class="navbar navbar-expand" id="connectionCol">
@@ -78,6 +74,9 @@
                 <!-- -->
             </div>
             <div>
+                <button type="button" class="btn btn-primary" id="btn_showMap">
+                    Map
+                </button>
                 <button type="button" class="btn btn-danger">
                     Ngắt kết nối
                 </button>
@@ -86,6 +85,13 @@
                 </button>
             </div>
         </div>
+
+        <!-- MAP - test - BEGIN -->
+        <div class="col col-md-8" id="home_body_map_col" style="height: 100%;" hidden="true">
+            <div id="map"></div>
+        </div>
+        <!-- MAP - test - END -->
+
         <div class="col col-md-8" id="home_body_order_info_col" style="height: 100%;">
             <div class="navbar navbar-expand" id="navbarNav" style="padding-bottom: 0;">
                 <ul class="navbar-nav ms-auto">
