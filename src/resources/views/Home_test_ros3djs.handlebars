@@ -1,0 +1,87 @@
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
+    crossorigin="anonymous"></script>
+
+<script src="https://kit.fontawesome.com/782f335177.js" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+
+<!-- ROS -->
+<script src="https://cdn.jsdelivr.net/npm/easeljs@1/lib/easeljs.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/eventemitter2@6/lib/eventemitter2.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/roslib@1/build/roslib.min.js"></script>
+<script src="/app/js/ros2d.js"></script>
+<!-- ROS -->
+
+<!-- CSS -->
+<link rel="stylesheet" href="/css/Home_test_ros3djs.css">
+<script src="/socket.io/socket.io.js"></script>
+<script src="/app/js/Home.js"></script>
+<!-- CSS -->
+
+{{> header}}
+
+<body>
+    <div class="container-fluid row">
+        <div class="col-lg-3">
+            <ul class="navbar-nav flex-column">
+                <li class="nav-item">
+                    <label for="" class="nav-link active">Home</label>
+                </li>
+                <li class="nav-item">
+                    <label for="" class="nav-link passive">Connection</label>
+                </li>
+            </ul>
+        </div>
+        <div class="col-lg-9">
+            <div class="container-fluid row" id="map_view">
+                <div class="col-sm-3">
+                    <ul>
+                        <li><label for="">Status</label></li>
+                        <li>
+                            <label for="">Control</label>
+                            <div style="text-align: center; margin-bottom: 1vh">
+                                <button type="button" class="btn btn-primary" id="btn-forward">
+                                    <i class="fa-sharp fa-solid fa-circle-arrow-up"></i>
+                                </button>
+                            </div>
+                            <div style="text-align: center; margin-bottom: 1vh">
+                                <button type="button" class="btn btn-primary" id="btn-left">
+                                    <i class="fa-sharp fa-solid fa-circle-arrow-left"></i>
+                                </button>
+                                <button type="button" class="btn btn-primary" id="btn-stop">
+                                    <i class="fa-solid fa-stop"></i>
+                                </button>
+                                <button type="button" class="btn btn-primary" id="btn-right">
+                                    <i class="fa-sharp fa-solid fa-circle-arrow-right"></i>
+                                </button>
+                            </div>
+                            <div style="text-align: center; margin-bottom: 1vh">
+                                <button type="button" class="btn btn-primary" id="btn-back">
+                                    <i class="fa-sharp fa-solid fa-circle-arrow-down"></i>
+                                </button>
+                            </div>
+                        </li>
+                        <li>
+                            <button type="button" class="btn btn-danger">
+                                Ngắt kết nối
+                            </button>
+                            <button type="button" class="btn btn-success">
+                                Kết nối lại
+                            </button>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-sm-9">
+                    <div id="map"></div>
+                </div>
+            </div>
+            <div class="container-fluid" id="orders_view">
+
+            </div>
+        </div>
+    </div>
+</body>
