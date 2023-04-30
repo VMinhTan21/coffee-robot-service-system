@@ -28,7 +28,14 @@ class HomeController {
                 isFirstConnect = false
             }
 
-            response.render('Home', {
+            // response.render('Home', {
+            //     title: 'RbCo - Homepage',
+            //     Orders_list: Orders_list,
+            //     Current_order: Current_order,
+            //     Completed_orders: Completed_orders,
+            // })
+
+            response.render('Home_test_ros3djs', {
                 title: 'RbCo - Homepage',
                 Orders_list: Orders_list,
                 Current_order: Current_order,
