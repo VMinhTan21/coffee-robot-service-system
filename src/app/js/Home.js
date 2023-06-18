@@ -8,7 +8,7 @@ $(document).ready(function () {
 
   // ROS
   var ros = new ROSLIB.Ros({
-    url: 'https://10.3.10.199:9090'
+    url: 'ws://10.3.10.199:9090'
   });
 
   ros.on('connection', function () {
