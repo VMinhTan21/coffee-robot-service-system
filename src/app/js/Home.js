@@ -8,8 +8,8 @@ $(document).ready(function () {
 
   // ROS
   var ros = new ROSLIB.Ros({
-    url: 'wss://192.168.1.201:9090',
-    rejectUnauthorized: false
+    url: 'ws://192.168.1.201:9090',
+    // rejectUnauthorized: false
   });
 
   ros.on('connection', function () {
